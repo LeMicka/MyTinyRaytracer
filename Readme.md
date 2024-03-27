@@ -1,6 +1,8 @@
-# Understandable RayTracing in 256 lines of bare C++
+# My first step into the world of graphics programming with a raytracer.
 
-This repository is a support code for my computer graphics lectures. It is not meant to be the ultimate rendering code or even physically realistic. It is meant to be **simple**. This project is distributed under the [DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE](https://en.wikipedia.org/wiki/WTFPL).
+This repository is my version of this project: [tiniraytracer](https://github.com/ssloy/tinyraytracer/wiki). I would like to thank @ssloy for the amazing tutorial, this project was very challenging even with the wiki explanations so i will try to give a small explanation of my code too.
+ 
+
 
 **Check [the wiki](https://github.com/ssloy/tinyraytracer/wiki) that accompanies the source code. The second raytracing chapter is available [in the tinykaboom repository](https://github.com/ssloy/tinykaboom/wiki). If you are looking for a software rasterizer, check the [other part of the lectures](https://github.com/ssloy/tinyrenderer/wiki).**
 
