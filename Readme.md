@@ -4,15 +4,15 @@ This repository is my version of this project: [tiniraytracer](https://github.co
 
 First, check [the wiki](https://github.com/ssloy/tinyraytracer/wiki) of the original version of this project with the complete step by step.
  
-# Explanation of the program
+## Explanation of the program
  
 This is a raytracer, raytracing consists of sending a ray from the camera into the scene and bouncing them on surfaces towards sources of lights to aproximate color of each pixels. 
 
-# Mygeometry.h
+## Mygeometry.h
 
 You'll see my geometry file is quite different, the one used by ssloy was very confusing to me so I looked for another way of doing the vector classes and I found the one of [scratchapixel](https://www.scratchapixel.com/index.html), also I only declared vector 3, 3, 4 classes as we don't need matrices in this project. I had to modify the Vec2 class to be able to call it's x and y elements like v[0] = x and V[1] = y and not just v.x and v.y, this was already in the Vec3 class.
 
-# The Code
+## The Code
 
 As this is a raycaster, we need to generate rays for each pixel in the frame, and each ray is generated from the camera to the scene.
 For this, we need to calculate the direction of each ray, cast it and store the color in a vector.
@@ -149,3 +149,12 @@ cmake ..
 make
 ```
 
+## Links for more informations
+
+[Ray-Sphere intersection](https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html) : This is the best explanation I have found for this.  
+
+[Generating rays from camera](https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays.html)
+
+Mathematics: [Scratchapixel's geometry](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/points-vectors-and-normals.html) section as well as [3blue1brown's linear algebra](https://www.3blue1brown.com/topics/linear-algebra) section.
+
+Reflection : https://en.wikipedia.org/wiki/Phong_reflection_model
