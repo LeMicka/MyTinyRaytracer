@@ -157,4 +157,10 @@ make
 
 Mathematics: [Scratchapixel's geometry](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/points-vectors-and-normals.html) section as well as [3blue1brown's linear algebra](https://www.3blue1brown.com/topics/linear-algebra) section.
 
-Reflection : https://en.wikipedia.org/wiki/Phong_reflection_model
+Reflection : - https://en.wikipedia.org/wiki/Phong_reflection_model
+             - https://bheisler.github.io/post/writing-raytracer-in-rust-part-3/
+             - https://web.archive.org/web/20180816064924/http://www.sunandblackcat.com/tipFullView.php?l=eng&topicid=30
+             - http://www.conitec.net/shaders/
+
+Refraction : - https://en.wikipedia.org/wiki/Snell%27s_law
+             - https://bheisler.github.io/post/writing-raytracer-in-rust-part-3/
