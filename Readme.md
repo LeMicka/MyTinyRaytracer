@@ -49,13 +49,19 @@ Imagine the frame as a 2D plane with the origin at it's center and the limits of
         x = (2 * (i + 0.5) / (float)width - 1) * tan(fov/2.) * imageAspectRatio;
         y = -(2 * (j + 0.5) / (float)height - 1) * tan(fov/2.);
 ```
-First, we add 0.5 to i and j to make sure that we cast the ray through the middle of each pixel.
-Then we remap the value in range [0, 1] by dividing it by the screen width or height in pixels.
-Now we want these values to be in range [-1, 1] (see the image of the frame above) to do so, we multiply by 2 so we are in range [0, 2] and then substract one to get the range [-1, 1].
-Something is wrong with the y coordinate here because if j = 0 here we will get y = -1 but we need it to be 1 as we will start with the top left corner whitch is the position [-1, 1] so we put the negative sign to inverse it.
-The image we get here is a rectangle because the width is bigger than the height. So we actually need to multiply the x (width) coordinate by the image aspect ratio. So for example the x coordinate will be in range [-1.4, 1.4] instead of [-1, 1].
-And finally we need to account the field of view. In our case the fov is 90º, so we have tan(fov/2) = 1, this is geometry look at [this picture](https://www.scratchapixel.com/images/ray-tracing-camera/camprofile.png?).
-We know that in a square triangle tan(alpha) = opposite/adjacent, and we know that the adjacent (length between camera and frame is 1) so opposite = tan(alpha) * 1. In our case that means tan(fov/2) is the length between the center of the frame 
+-First, we add 0.5 to i and j to make sure that we cast the ray through the middle of each pixel.
+
+-Then we remap the value in range [0, 1] by dividing it by the screen width or height in pixels.
+
+-Now we want these values to be in range [-1, 1] (see the image of the frame above) to do so, we multiply by 2 so we are in range [0, 2] and then substract one to get the range [-1, 1].
+
+-Something is wrong with the y coordinate here because if j = 0 here we will get y = -1 but we need it to be 1 as we will start with the top left corner whitch is the position [-1, 1] so we put the negative sign to inverse it.
+
+-The image we get here is a rectangle because the width is bigger than the height. So we actually need to multiply the x (width) coordinate by the image aspect ratio. So for example the x coordinate will be in range [-1.4, 1.4] instead of [-1, 1].
+
+-And finally we need to account the field of view. In our case the fov is 90º, so we have tan(fov/2) = 1, this is geometry look at [this picture](https://www.scratchapixel.com/images/ray-tracing-camera/camprofile.png?).
+
+-We know that in a square triangle tan(alpha) = opposite/adjacent, and we know that the adjacent (length between camera and frame is 1) so opposite = tan(alpha) * 1. In our case that means tan(fov/2) is the length between the center of the frame 
 and the edge. We can observe that the value of the fov will change that length, so an angle bigger than 90 will give us a value bigger than 1, and a smaller one a value smaller than 1.
 
 The castRay function:
@@ -95,6 +101,43 @@ The refraction:
 ```
 For the refraction we first have to calculate the refraction direction, see [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law) especially the vector form part.
 The origin is moved positively or negatively based on the dotproduct result as the hitpoint can be outside or inside of an object.
+
+Creating the plane and the checkerboard patern:
+
+```c++
+    float checkerBoardDist = std::numeric_limits<float>::max();
+    if(fabs(direction.y) > 1e-3)                                    
+    {
+        float distPHit = -(origin.y + 4) / direction.y;             
+        Vec3f pHitPosition = origin + direction * distPHit;         
+        if (distPHit > 0 && distPHit < sphereDist && fabs(pHitPosition.x) < 10 && pHitPosition.z < -10 && pHitPosition.z > -30)
+        {
+            checkerBoardDist = distPHit;
+            hitPoint = pHitPosition;
+            normal = Vec3f(0, 1, 0);
+            material.diffuseColor = (int(0.5 * hitPoint.x + 1000) + int(0.5 * hitPoint.z)) & 1 ? Vec3f(.3, .3, .3) : Vec3f(.3, .2, .1);
+        }
+    }
+```
+First, we check if the y component is 0 to avoid a division by 0.
+
+```c++
+float distPHit = -(origin.y + 4) / direction.y;             
+Vec3f pHitPosition = origin + direction * distPHit;         
+```
+The equation of the plane is y = -4, whitch means that the plane is on the XZ plane with y = -4.
+We then calculate the distance from the ray origin to the plane whitch is actually the number of units from the ray origin until the ray reaches the plane's y.
+With that we can get the position of that point.
+
+We give the checkerboard a size of 20 by 20 , between -10 and 10 on x and between -10 and -30 on z.
+If the hitpoint is between those coordinates, we can create the checkerboard patern:
+```c++
+material.diffuseColor = (int(0.5 * hitPoint.x + 1000) + int(0.5 * hitPoint.z)) & 1 ? Vec3f(.3, .3, .3) : Vec3f(.3, .2, .1);        
+```
+To do this, we use the formula int(hitPoint.x) + int(hitPoint.z) & 1, this will give either 0 or 1 depending on if the first part is even or odd. based on the result, we assign one color or the other.
+In our case we scale by 0.5 the x and the z to get a patern of 10x10 squares instead of 20x20.
+We then add 1000 to x, this comes from the main tutorial, it is not explain why we do it and i am not sure if it is needed as I have tried changing it to different values even negative ones with no change to be seen.
+I left it just in case but I think you can remove it.
 
 ## compilation
 ```sh
