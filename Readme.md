@@ -8,6 +8,11 @@ First, check [the wiki](https://github.com/ssloy/tinyraytracer/wiki) of the orig
  
 This is a raytracer, raytracing consists of sending a ray from the camera into the scene and bouncing them on surfaces towards sources of lights to aproximate color of each pixels. 
 
+## What I have Learned
+
+- Math!! : So much about this progrm is math, vectors, geography... Graphics programming in general needs a lot of mathematical knowledge.
+- C++ and object oriented programming: This was my first step into some object oriented programming so i learned a lot about classes and methods.
+
 ## Mygeometry.h
 
 You'll see my geometry file is quite different, the one used by ssloy was very confusing to me so I looked for another way of doing the vector classes and I found the one of [scratchapixel](https://www.scratchapixel.com/index.html), also I only declared vector 2, 3, 4 classes as we don't need matrices in this project. I had to modify the Vec2 class to be able to call it's x and y elements like v[0] = x and V[1] = y and not just v.x and v.y, this was already in the Vec3 class.
