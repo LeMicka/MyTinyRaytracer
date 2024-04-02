@@ -1,6 +1,6 @@
 # My first step into the world of graphics programming with a raytracer.
 
-This repository is my version of this project: [tiniraytracer](https://github.com/ssloy/tinyraytracer/wiki). I would like to thank [ssloy](https://github.com/ssloy) for the amazing tutorial, this project was very challenging even with the wiki explanations (mostly because of all the math it includes hehe) so I will try to give a small explanation of my code too.
+This repository is my version of this project: [tiniraytracer](https://github.com/ssloy/tinyraytracer/wiki). I would like to thank [ssloy](https://github.com/ssloy) for the amazing tutorial, this project was very challenging even with the wiki explanations (mostly because of all the math it includes hehe) so I will try to give a small explanation of my code too. This project is distributed under the DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE.
 
 First, check [the wiki](https://github.com/ssloy/tinyraytracer/wiki) of the original version of this project with the complete step by step.
  
